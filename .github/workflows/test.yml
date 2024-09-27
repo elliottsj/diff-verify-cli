@@ -1,12 +1,10 @@
-name: Test and Release
+name: Test
 on:
-  push:
-    branches:
-      - main
+  pull_request: {}
 
 jobs:
-  test-and-release:
-    name: Run tests and release
+  test:
+    name: Run tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -30,9 +28,3 @@ jobs:
 
       - name: Run tests
         run: pnpm test
-
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: pnpm run semantic-release
