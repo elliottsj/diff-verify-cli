@@ -15,7 +15,7 @@ import path from 'path';
 const copyFile = fs.promises.copyFile;
 const readFile = fs.promises.readFile;
 const mkdir = fs.promises.mkdir;
-const rmdir = fs.promises.rmdir;
+const rm = fs.promises.rm;
 
 const cli = meow(
   `
@@ -176,7 +176,7 @@ const getTmpFileName = (file, tmpDir) => {
     // Delete tmp-dir if it was created
     if (tmpDir && !dryRun) {
       log('delete', `Removing temporary directory "${tmpDir}"`);
-      await rmdir(tmpDir, { recursive: true });
+      await rm(tmpDir, { recursive: true });
     }
   }
 })();
